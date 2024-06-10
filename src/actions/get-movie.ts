@@ -50,7 +50,10 @@ export async function getMovie({
     },
   };
 
-  const response = await fetch(url, options);
+  const response = await fetch(url, {
+    ...options,
+    cache: "no-store",
+  });
 
   let jsonResp = (await response.json()) as GetMovieResponse;
 
