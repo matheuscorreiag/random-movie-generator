@@ -15,8 +15,8 @@ export default async function Home({
       <div className="max-w-lg flex gap-4 flex-col">
         <MovieGenres genres={movieGenres.genres} />
 
-        {searchParams.genreId && (
-          <RandomMovie genreId={parseInt(searchParams.genreId as string)} />
+        {searchParams.genreIds && (
+          <RandomMovie genreIds={searchParams.genreIds as string} />
         )}
 
         <GenerateRandomMovie />

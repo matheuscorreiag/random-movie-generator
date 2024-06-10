@@ -1,10 +1,13 @@
 import { create } from "zustand";
 
 type MovieGenre = {
-  genreId: number | null;
+  genreIds: number[];
   setGenreId: (genreId: number) => void;
 };
 export const useMovieGenre = create<MovieGenre>((set) => ({
-  genreId: null,
-  setGenreId: (genreId: number) => set({ genreId }),
+  genreIds: [],
+  setGenreId: (genreId: number) =>
+    set((state) => ({
+      genreIds: [...state.genreIds, genreId],
+    })),
 }));

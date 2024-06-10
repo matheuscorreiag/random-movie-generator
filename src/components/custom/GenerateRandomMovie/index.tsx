@@ -5,17 +5,23 @@ import { useMovieGenre } from "@/stores/useMovieGenre";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function GenerateRandomMovie() {
-  const { genreId } = useMovieGenre();
+  const { genreIds } = useMovieGenre();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
 
   function handleGenerateRandomMovie() {
-    if (!genreId) return;
+    if (!genreIds) return;
 
     const params = new URLSearchParams(searchParams);
 
-    params.set("genreId", genreId.toString());
+    let genres = genreIds.join("_");
+
+    if (params.get("genreIds")) {
+      params.delete("genreIds");
+    }
+
+    params.set("genreIds", genres);
 
     replace(`${pathname}?${params.toString()}`);
   }

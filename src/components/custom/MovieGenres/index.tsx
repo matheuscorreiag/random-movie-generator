@@ -4,21 +4,14 @@ import { Genres } from "@/actions/get-movie-genres";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useMovieGenre } from "@/stores/useMovieGenre";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 type MovieGenresProps = {
   genres: Genres[];
 };
 export function MovieGenres({ genres }: MovieGenresProps) {
-  const { genreId, setGenreId } = useMovieGenre();
+  const { genreIds, setGenreId } = useMovieGenre();
 
   function handleMovieGenres(genreId: number) {
-    // const params = new URLSearchParams(searchParams);
-
-    // params.set("genreId", genreId.toString());
-
-    // replace(`${pathname}?${params.toString()}`);
     setGenreId(genreId);
   }
   return (
@@ -27,7 +20,9 @@ export function MovieGenres({ genres }: MovieGenresProps) {
         <Button
           key={genres.id}
           className={cn("bg-white hover:bg-zinc-400 text-zinc-600", {
-            "bg-green-500 text-white hover:bg-green-800": genreId === genres.id,
+            "bg-green-500 text-white hover:bg-green-800": genreIds.find(
+              (genre) => genre === genres.id
+            ),
           })}
           onClick={() => handleMovieGenres(genres.id)}
         >

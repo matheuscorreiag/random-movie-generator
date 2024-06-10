@@ -2,16 +2,16 @@ import { getMovie } from "@/actions/get-movie";
 import Image from "next/image";
 
 type RandomMovieProps = {
-  genreId: number;
+  genreIds: string;
 };
-export async function RandomMovie({ genreId }: RandomMovieProps) {
-  const movie = await getMovie({ genreId: genreId });
+export async function RandomMovie({ genreIds }: RandomMovieProps) {
+  const movie = await getMovie({ genreIds: genreIds });
 
   return (
     <div>
       {movie && (
         <Image
-          alt="movie poster"
+        alt="movie poster"
           src={"http://image.tmdb.org/t/p/w500" + movie?.poster_path}
           width={400}
           height={200}

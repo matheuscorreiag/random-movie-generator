@@ -25,14 +25,19 @@ type GetMovieResponse = {
 };
 
 type GetMovieProps = {
-  genreId: number;
+  genreIds: string;
 };
 export async function getMovie({
-  genreId,
+  genreIds,
 }: GetMovieProps): Promise<Movie | null> {
-  if (!genreId) return null;
+  if (!genreIds) return null;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`;
+  const genresSplitted = genreIds.split("_").map((genre) => parseInt(genre));
+  const formattedGenres = genresSplitted.join(",");
+
+  console.log("formattedGenres", formattedGenres);
+
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${formattedGenres}`;
 
   const options = {
     method: "GET",
