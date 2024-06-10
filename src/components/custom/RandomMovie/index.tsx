@@ -24,7 +24,7 @@ export async function RandomMovie({ genreIds }: RandomMovieProps) {
         />
       )}{" "}
       <h2 className="text-white font-bold">
-        {movie?.title} - {movie?.release_date.split("-")[0]}
+        {movie && movie?.title + " - " + movie?.release_date.split("-")[0]}
       </h2>
       <h2 className="text-white max-h-[200px] overflow-y-scroll mt-12 mb-16">
         {movie?.overview}
