@@ -21,6 +21,8 @@ export type Movie = {
 
 type GetMovieResponse = {
   page: number;
+  total_pages: number;
+  total_results: number;
   results: Movie[];
 };
 
@@ -33,9 +35,10 @@ export async function getMovie({
   if (!genreIds) return null;
 
   const genresSplitted = genreIds.split("_").map((genre) => parseInt(genre));
-  const formattedGenres = genresSplitted.join(",");
-
-  console.log("formattedGenres", formattedGenres);
+  let formattedGenres =
+    genresSplitted.length > 0
+      ? genresSplitted.join("|")
+      : genresSplitted[0].toString();
 
   const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${formattedGenres}`;
 
@@ -49,7 +52,21 @@ export async function getMovie({
 
   const response = await fetch(url, options);
 
-  const data = (await response.json()) as Promise<GetMovieResponse>;
+  let jsonResp = (await response.json()) as GetMovieResponse;
 
-  return (await data).results[0];
+  const page = jsonResp.total_pages > 500 ? 500 : jsonResp.total_pages;
+
+  const randomPage = Math.floor(Math.random() * page) + 1;
+
+  const randomUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${formattedGenres}&page=${randomPage}&sort_by=popularity.desc`;
+
+  const randomResponse = await fetch(randomUrl, options);
+
+  jsonResp = (await randomResponse.json()) as GetMovieResponse;
+
+  if (!jsonResp.results) return null;
+
+  const randomMovie = jsonResp.results[0];
+
+  return randomMovie;
 }

@@ -9,9 +9,13 @@ type MovieGenresProps = {
   genres: Genres[];
 };
 export function MovieGenres({ genres }: MovieGenresProps) {
-  const { genreIds, setGenreId } = useMovieGenre();
+  const { genreIds, setGenreId, removeGenreId } = useMovieGenre();
 
   function handleMovieGenres(genreId: number) {
+    if (genreIds.find((genre) => genre === genreId)) {
+      removeGenreId(genreId);
+      return;
+    }
     setGenreId(genreId);
   }
   return (
