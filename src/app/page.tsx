@@ -11,8 +11,8 @@ export default async function Home({
   const movieGenres = await getMovieGenres();
 
   return (
-    <main className="bg-zinc-900 w-screen h-screen items-center flex justify-center flex-col">
-      <div className="lg:max-w-lg flex gap-4 flex-col">
+    <main className="bg-zinc-900 w-full h-full items-center flex justify-center flex-col">
+      <div className="lg:max-w-lg flex gap-4 flex-col p-4">
         <label className="text-zinc-300 font-bold text-sm">
           Select the movie genres you would like to watch...
         </label>
