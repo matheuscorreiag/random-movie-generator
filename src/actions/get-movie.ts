@@ -9,6 +9,7 @@ export type Movie = {
   id: number;
   original_language: string;
   original_title: string;
+  overview: string;
   popularity: number;
   poster_path: string;
   release_date: string;
@@ -28,8 +29,10 @@ type GetMovieProps = {
 };
 export async function getMovie({
   genreId,
-}: GetMovieProps): Promise<GetMovieResponse> {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genreId}`;
+}: GetMovieProps): Promise<Movie | null> {
+  if (!genreId) return null;
+
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`;
 
   const options = {
     method: "GET",
@@ -41,7 +44,7 @@ export async function getMovie({
 
   const response = await fetch(url, options);
 
-  const data = response.json() as Promise<GetMovieResponse>;
+  const data = (await response.json()) as Promise<GetMovieResponse>;
 
-  return data;
+  return (await data).results[0];
 }
