@@ -19,7 +19,7 @@ export function MovieGenres({ genres }: MovieGenresProps) {
     setGenreId(genreId);
   }
   return (
-    <div className="flex gap-x-4 overflow-x-scroll">
+    <div className="flex gap-x-4 items-center w-[350px] overflow-auto sm:w-full max-w-lg">
       {genres.map((genres) => (
         <Button
           key={genres.id}

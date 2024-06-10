@@ -28,7 +28,7 @@ export function GenerateRandomMovie() {
 
   return (
     <Button
-      className="bg-green-500 w-full hover:bg-green-800 h-12 font-bold"
+      className="bg-green-500 hover:bg-green-800 h-12 font-bold w-full"
       onClick={handleGenerateRandomMovie}
     >
       Generate
