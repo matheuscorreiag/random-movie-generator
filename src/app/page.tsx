@@ -12,7 +12,7 @@ export default async function Home({
 
   return (
     <main className="bg-zinc-900 w-full h-full items-center flex justify-center flex-col">
-      <div className="w-full md:max-w-md flex gap-4 flex-col p-4 bg-red-600">
+      <div className="w-full md:max-w-md flex gap-4 flex-col p-4">
         <label className="text-zinc-300 font-bold text-sm">
           Select the movie genres you would like to watch...
         </label>
