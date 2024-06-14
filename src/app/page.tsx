@@ -1,13 +1,9 @@
 import { getMovieGenres } from "@/actions/get-movie-genres";
 import { GenerateRandomMovie } from "@/components/custom/GenerateRandomMovie";
 import { MovieGenres } from "@/components/custom/MovieGenres";
-import { RandomMovie } from "@/components/custom/RandomMovie";
+import { Suspense } from "react";
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default async function Home() {
   const movieGenres = await getMovieGenres();
 
   return (
@@ -16,11 +12,15 @@ export default async function Home({
         <label className="text-zinc-300 font-bold text-sm">
           Select the movie genres you would like to watch...
         </label>
-        <MovieGenres genres={movieGenres.genres} />
+        <Suspense>
+          <MovieGenres genres={movieGenres.genres} />
+        </Suspense>
         <label className="text-xs underline text-zinc-300 hover:text-zinc-500 transition-all cursor-pointer">
           Aditional filters
         </label>
-        <GenerateRandomMovie />
+        <Suspense>
+          <GenerateRandomMovie />
+        </Suspense>
       </div>
     </main>
   );
