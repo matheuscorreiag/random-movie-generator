@@ -1,36 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a random movie generator, made with Next.Js 14, server actions, SSR and more!
 
-## Getting Started
+To test locally:
+1. create a .env.local with the data below:
+export EXPO_PUBLIC_ACCESS_TOKEN_AUTH="eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYmZkZTM3YWRiNjZhN2IzNDdhNTE0OWZhNTE0YmUyZiIsInN1YiI6IjY0YTM5MzBiOGUyMGM1MDEwZDRlODA1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wTPRQM39cSoVQvy7zzAC4ueT_32UkoP2LWmYdfr7p0c"
+export EXPO_PUBLIC_API_KEY_AUTH="3bfde37adb66a7b347a5149fa514be2f"
 
-First, run the development server:
+2. Install the repo and start with `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To test live on web check the [link here](https://random-movie-generator-two.vercel.app/)
+  
