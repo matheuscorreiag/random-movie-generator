@@ -20,7 +20,6 @@ export default async function Home({
         <label className="text-xs underline text-zinc-300 hover:text-zinc-500 transition-all cursor-pointer">
           Aditional filters
         </label>
-        <RandomMovie genreIds={searchParams.genreIds as string} />
         <GenerateRandomMovie />
       </div>
     </main>

@@ -1,37 +1,35 @@
 "use client";
 
+import { Movie, getMovie } from "@/actions/get-movie";
+import { RandomMovie } from "@/components/custom/RandomMovie";
 import { Button } from "@/components/ui/button";
-import { useMovieGenre } from "@/stores/useMovieGenre";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export function GenerateRandomMovie() {
-  const { genreIds } = useMovieGenre();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-  const pathname = usePathname();
+  const [movie, setMovie] = useState<Movie | null>(null);
+  const genreIds = useSearchParams().get("genreIds");
 
-  function handleGenerateRandomMovie() {
+  async function handleGeneration() {
     if (!genreIds) return;
 
-    const params = new URLSearchParams(searchParams);
+    const movie = await getMovie({ genreIds });
 
-    let genres = genreIds.join("_");
-
-    if (params.get("genreIds")) {
-      params.delete("genreIds");
-    }
-
-    params.set("genreIds", genres);
-
-    replace(`${pathname}?${params.toString()}`);
+    setMovie(movie);
   }
 
   return (
-    <Button
-      className="bg-green-500 hover:bg-green-800 h-12 font-bold w-full"
-      onClick={handleGenerateRandomMovie}
-    >
-      Generate
-    </Button>
+    <>
+      <div className="min-h-[550px]">
+        <RandomMovie movie={movie || null} />
+      </div>
+      <Button
+        className="bg-green-500 hover:bg-green-800 h-12 font-bold w-full"
+        disabled={!genreIds}
+        onClick={handleGeneration}
+      >
+        Generate
+      </Button>
+    </>
   );
 }
