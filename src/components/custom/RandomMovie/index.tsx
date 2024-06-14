@@ -15,7 +15,7 @@ export function RandomMovie({ movie }: RandomMovieProps) {
           height={200}
           className="w-full max-h-[200px] min-h-[200px] object-contain rounded-lg mt-12 mb-6"
         />
-        )
+
         <h2 className="text-white font-bold">
           {movie && movie?.title + " - " + movie?.release_date.split("-")[0]}
         </h2>
